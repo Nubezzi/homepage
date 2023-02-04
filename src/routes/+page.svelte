@@ -17,11 +17,11 @@
     import kuva7 from '../lib/assets/7.png' 
     const kuvat = [kuva1, kuva2, kuva3, kuva4, kuva5, kuva6, kuva7];
     const layers = [1, 2, 3, 4, 5, 6, 7];
-
-	let y, maxy, maxx;
+    let y, realy, maxy, maxx;
+    $: {y = Math.round(realy)}
 
 </script>
-<svelte:window bind:innerWidth={maxx} bind:innerHeight={maxy} bind:scrollY={y}/>
+<svelte:window bind:innerWidth={maxx} bind:innerHeight={maxy} bind:scrollY={realy}/>
 <body>
     <nav class="navbar">
         <a href="/">Home</a>
