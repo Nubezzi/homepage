@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;400&display=swap');
+
+:root {
+    --backg: #323545;
+    --primary: #00b185;
+    --secondary: #B1BBEC;
+    --primarylight: #51fae3;
+    --secondarylight: #E6E8F4;
+    --vp: 1vw;
+}
+
+header{
+    display: inline-flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: var(--secondarylight);
+}
+
+html *{
+    font-family: 'Exo 2', sans-serif;
+}
+h1{
+    text-align: center;
+    color: var(--primarylight);
+    font-size: 5em;
+}
+
+h2{
+    text-align: center;
+    color: var(--primary);
+    font-size: 3em;
+}
+
+h3{
+    text-align: left;
+    color: var(--primary);
+}
+body{
+    background-color: var(--backg);
+    color: var(--secondary);
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    overflow-wrap: normal;
+    margin: 0;
+    padding: 0;
+    overflow-wrap: hidden;
+}
+
+a {
+    color: hotpink;
+}
+
+/* The navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: var(--backg);
+  position: sticky;
+  top: 0;
+  width: 100%; /* Full width */
+  border: transparent;
+  border-bottom: 2px var(--primary);
+  border-radius: 2px;
+  border-style: inset;
+  z-index: 20;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+
+.scroll-content-top {
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    min-height: 80vh;
+    margin-top: 20%;
+    
+}
+.scroll-content {
+    margin:0 auto;
+    display: block;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+.scroll-content-bottom {
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    min-height: 80vh;
+    margin-bottom: -20%;
+}
+
+
+.logo {
+    position: fixed;
+    will-change: transform;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    z-index: 14;
+    width: 400px;
+    height: 400px;
+    background-color: #666;
+    -webkit-mask: url(./components/image2vector.svg) 50% 50% no-repeat;
+    mask: url(./components/image2vector.svg) 50% 50% no-repeat;
+    transform: translate(0,0px) rotate(45deg) scale(var(--scale));
+	}
+
+.logo-header{
+    position: fixed;
+    overflow: hidden;
+    will-change: transform;
+    left: -9999px;
+    right: -9999px;
+    filter: drop-shadow(0 0 10px white);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    z-index: 15;
+    transform: translate(0, 60px);
+    
+}
+
+
+
+.parallax-container {
+    position: sticky;
+    width: 100%;
+    height: 145vh;
+    align-items: center;
+    align-content: center;
+    z-index: 10;
+}
+
+.parallax-container img {
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    will-change: transform;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    z-index: 10;
+}
+
+.parallax-container img:last-child::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--backg);
+    z-index: 0;
+}
+
+.text {
+    position: relative;
+    width: 100%;
+    height: 300vh;
+    color: var(--secondary);
+    text-align: center;
+    padding: 4em 0.5em 0.5em 0.5em;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 15;
+}
+
+span {
+    display: block;
+    font-size: 1.7em;
+    will-change: transform, opacity;
+}
+
+.foreground {
+    position: absolute;
+    top: 711px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 1000px);
+    background-color: var(--backg);
+    color: white;
+    padding: 50vh 0 0 0;
+}
+
+@media screen and (max-width: 1000px) {
+    .logo-header h1{
+        font-size: 10vw;
+    }
+    .logo-header h2{
+        font-size: 8vw;
+    }
+}
+
+@media screen and (max-width: 1980px) {
+    .parallax-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        align-items: center;
+        align-content: center;
+        z-index: 10;
+    }
+    
+    .parallax-container img {
+        position: fixed;
+        margin: auto;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        overflow: hidden;
+        will-change: transform;
+        left: -9999px;
+        right: -9999px;
+        margin: auto;
+        z-index: 10;
+    }
+}
+
+
+
+
