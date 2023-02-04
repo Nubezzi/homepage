@@ -8,6 +8,14 @@
     import About from '../components/about.svelte'
     import Projects from '../components/projects.svelte'
     import Contact from '../components/contact.svelte'
+    import kuva1 from '../lib/assets/1.png'
+    import kuva2 from '../lib/assets/2.png'
+    import kuva3 from '../lib/assets/3.png'
+    import kuva4 from '../lib/assets/4.png'
+    import kuva5 from '../lib/assets/5.png'
+    import kuva6 from '../lib/assets/6.png'
+    import kuva7 from '../lib/assets/7.png' 
+    const kuvat = [kuva1, kuva2, kuva3, kuva4, kuva5, kuva6, kuva7];
     const layers = [1, 2, 3, 4, 5, 6, 7];
 
 	let y, maxy, maxx;
@@ -29,7 +37,7 @@
                   style="transform: translate(0,{((layer * ((maxy/1080)*90)) - ((maxy/1080)*200) + (-y) * (layer/(layer + ((maxy/1080)*8))))}px);
                         filter: blur({0.5 + (y/400)}px);
                         z-index: {10 + layer}"
-                  src="src/lib/assets/{layer}.png"
+                  src={kuvat[layer-1]}
                   alt="parallax layer {layer}"
               >
           {/each}
