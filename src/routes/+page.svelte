@@ -1,6 +1,6 @@
 <script>
     import '../App.css';
-    console.log("testi")
+    import { onMount, tick } from 'svelte';
     import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
     import Home from '../components/home.svelte'
@@ -17,20 +17,64 @@
     import kuva7 from '../lib/assets/7.png' 
     const kuvat = [kuva1, kuva2, kuva3, kuva4, kuva5, kuva6, kuva7];
     const layers = [1, 2, 3, 4, 5, 6, 7];
-    let y, realy, maxy, maxx;
+    var about = false
+    var projects = false
+    var contact = false
+    let bodyHeight;
+    let y, realy, maxy, maxx, currY, contentHeight, parallaxHeight, navHeight, bodyY;
     $: {y = Math.round(realy)}
+    $:{
+        currY = y / (bodyHeight - maxy) * 10
+        console.log(y)
+    }
+    $:{
+        if(y >= (parallaxHeight + (0 - (maxy / 5))) && y <= (parallaxHeight + (maxy - 2*(maxy / 5)))){
+            about = true
+        }else {
+            about = false
+        }
+    }
+    $:{
+        if(y >= (parallaxHeight + (maxy - 2*(maxy / 5)))  && y <= (parallaxHeight + (2*maxy - 2*(maxy / 5)))){
+            projects = true
+        }else {
+            projects = false
+        }
+    }
+    $:{
+        if(y >= (parallaxHeight + (2*maxy - 2*(maxy / 5)))){
+            contact = true
+        }else {
+            contact = false
+        }
+    }
+
+    function scrollIntoView({ target }) {
+		const el = document.querySelector(target.getAttribute('href'));
+		if (!el) return;
+        el.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+        });
+    }
+
+    onMount(() => {
+        bodyHeight = document.body.scrollHeight
+		console.log(`nav: ${navHeight}, parallax: ${parallaxHeight}, cont: ${contentHeight}, screensize: ${maxy}`)
+        bodyHeight = navHeight + parallaxHeight + contentHeight
+	})
 
 </script>
-<svelte:window bind:innerWidth={maxx} bind:innerHeight={maxy} bind:scrollY={realy}/>
+<svelte:window bind:innerWidth={maxx} bind:outerHeight={maxy} bind:scrollY={realy}/>
 <body>
-    <nav class="navbar">
-        <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Projects</a>
-        <a href="/">Contact</a>
+    <nav bind:clientHeight={navHeight} class="navbar">
+        <a href="#section-1" on:click|preventDefault={scrollIntoView}>Home</a>
+        <a href="#section-2" on:click|preventDefault={scrollIntoView}>About</a>
+        <a href="#section-3" on:click|preventDefault={scrollIntoView}>Projects</a>
+        <a href="#section-4" on:click|preventDefault={scrollIntoView}>Contact</a>
     </nav>  
       
-      <div class="parallax-container">
+      <div id="section-1" bind:clientHeight={parallaxHeight} class="parallax-container">
           {#each layers as layer}
               <img
                   class='img-scroll'
@@ -46,10 +90,11 @@
       </div>
       
        
-      <div class="text">
-      
+      <div bind:clientHeight={contentHeight} class="text">
           <div class="foreground">
-              You have scrolled {y} pixels
+            <About isIn={about} />
+            <Projects isIn={projects} />
+            <Contact isIn={contact} />
           </div>
       </div>
 </body>
